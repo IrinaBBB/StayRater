@@ -30,7 +30,7 @@ fun Route.getAllHotels() {
             )
         } catch (e: IllegalArgumentException) {
             call.respond(
-                message = ApiResponse(success = false, message = "Heroes not Found."),
+                message = ApiResponse(success = false, message = "Hotels not Found."),
                 status = HttpStatusCode.NotFound
             )
         }
