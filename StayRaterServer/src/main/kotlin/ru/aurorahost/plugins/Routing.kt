@@ -1,16 +1,13 @@
 package ru.aurorahost.plugins
 
-import io.ktor.application.*
-import io.ktor.response.respondText
-import io.ktor.routing.get
+import io.ktor.application.Application
 import io.ktor.routing.routing
+import ru.aurorahost.routes.root
 
 
 fun Application.configureRouting() {
     routing {
-        get("/") {
-            call.respondText("Hello World!")
-        }
+        root()
     }
 }
 
