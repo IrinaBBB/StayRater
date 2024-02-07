@@ -3,9 +3,22 @@ package ru.aurorahost.repositories
 import ru.aurorahost.models.ApiResponse
 import ru.aurorahost.models.Hotel
 
+const val NEXT_PAGE_KEY = "nextPage"
+const val PREVIOUS_PAGE_KEY = "prevPage"
+
 class HotelRepositoryImpl : HotelRepository {
-    override val hotels: Map<Int, List<Hotel>>
-        get() = TODO("Not yet implemented")
+
+    override val hotels: Map<Int, List<Hotel>> by lazy {
+        mapOf(
+            1 to page1,
+            2 to page2,
+            3 to page3,
+            4 to page4,
+            5 to page5
+        )
+    }
+
+
     override val page1 = listOf(
         Hotel(
             1,
@@ -19,7 +32,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Pool", "Spa", "Gym"),
             listOf("Deluxe Suite", "Executive Room"),
             listOf("Room Service", "Concierge"),
-            "luxury_palace"
+            "/images/luxury_palace.jpg"
         ),
         Hotel(
             2,
@@ -33,7 +46,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Beach Access", "Swimming Pool", "Restaurant"),
             listOf("Ocean View Room", "Standard Room"),
             listOf("Free Wi-Fi", "Parking"),
-            "seaside_retreat"
+            "/images/seaside_retreat.jpg"
         ),
         Hotel(
             3,
@@ -47,7 +60,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Hiking Trails", "Fireplace Lounge", "Bar"),
             listOf("Mountain View Cabin", "Standard Cabin"),
             listOf("Pet-Friendly", "Wi-Fi"),
-            "mountain_lodge"
+            "/images/mountain_lodge.jpg"
         ),
     )
 
@@ -64,7 +77,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Rooftop Bar", "Conference Rooms", "Fitness Center"),
             listOf("City View Suite", "Business Room"),
             listOf("Free Breakfast", "Airport Shuttle"),
-            "urban_oasis"
+            "/images/urban_oasis.jpg"
         ),
         Hotel(
             5,
@@ -78,7 +91,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Antique Furnishings", "Courtyard Garden", "Tea Room"),
             listOf("Vintage Suite", "Classic Room"),
             listOf("Complimentary Tea", "Guided Tours"),
-            "historic_inn"
+            "/images/historic_inn.jpg"
         ),
         Hotel(
             6,
@@ -92,7 +105,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Private Beach", "Swim-up Bar", "Spa"),
             listOf("Luxury Villa", "Beachfront Bungalow"),
             listOf("All-Inclusive Dining", "Water Sports"),
-            "tropical_paradise"
+            "/images/tropical_paradise.jpg"
         ),
     )
 
@@ -109,7 +122,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("River View Terrace", "Fishing Dock", "Event Spaces"),
             listOf("Suite with River View", "Standard Room"),
             listOf("Free Parking", "Boat Rentals"),
-            "riverside_manor"
+            "/images/riverside_manor.jpg"
         ),
         Hotel(
             8,
@@ -123,7 +136,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Solar Panels", "Nature Trails", "Organic Restaurant"),
             listOf("Green Suite", "Nature Cabin"),
             listOf("Recycling Program", "Electric Vehicle Charging"),
-            "eco_friendly_haven"
+            "/images/eco_friendly_haven.jpg"
         ),
         Hotel(
             9,
@@ -137,7 +150,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Sky Lounge", "Business Center", "Indoor Pool"),
             listOf("Executive Suite", "Skyline View Room"),
             listOf("Free Wi-Fi", "Valet Parking"),
-            "skyline_tower_hotel"
+            "/images/skyline_tower_hotel.jpg"
         ),
     )
 
@@ -154,7 +167,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Meditation Gardens", "Yoga Studio", "Tea Pavilion"),
             listOf("Zen Suite", "Tranquil Room"),
             listOf("Daily Yoga Classes", "Vegetarian Dining"),
-            "zen_retreat"
+            "/images/zen_retreat.jpg"
         ),
         Hotel(
             11,
@@ -168,7 +181,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Sports Bar", "Fitness Center", "Outdoor Courts"),
             listOf("Sports Suite", "Standard Room"),
             listOf("Game Nights", "Sports Equipment Rental"),
-            "sports_haven"
+            "/images/sports_haven.jpg"
         ),
         Hotel(
             12,
@@ -182,7 +195,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Open Fields", "Bonfire Pit", "Farm-to-Table Restaurant"),
             listOf("Country Cabin", "Rural Room"),
             listOf("Petting Zoo", "Nature Workshops"),
-            "countryside_lodge"
+            "/images/countryside_lodge.jpg"
         )
     )
 
@@ -199,7 +212,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Private Beach Access", "Spa Retreat", "Poolside Bar"),
             listOf("Oceanfront Suite", "Deluxe Room"),
             listOf("Gourmet Dining", "Beach Yoga Sessions"),
-            "gourmet_dining"
+            "/images/gourmet_dining.jpg"
         ),
         Hotel(
             14,
@@ -213,7 +226,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Mountain View Terrace", "Heated Pool", "Fine Dining"),
             listOf("Presidential Suite", "Panoramic Room"),
             listOf("24/7 Room Service", "Helicopter Tours"),
-            "golden_peaks_hotel"
+            "/images/golden_peaks_hotel.jpg"
         ),
         Hotel(
             15,
@@ -227,12 +240,38 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Skyline View Restaurant", "Spacious Ballroom", "Executive Lounge"),
             listOf("City View Suite", "Business Room"),
             listOf("Complimentary Breakfast", "Limousine Service"),
-            "cityscape_grand"
+            "/images/cityscape_grand.jpg"
         )
     )
 
     override suspend fun getAllHotels(page: Int): ApiResponse {
-        TODO("Not yet implemented")
+        return ApiResponse(
+            success = true,
+            message = "ok",
+            prevPage = calculatePage(page = page)[PREVIOUS_PAGE_KEY],
+            nextPage = calculatePage(page = page)[NEXT_PAGE_KEY],
+            hotels = hotels[page]!!,
+            lastUpdated = System.currentTimeMillis()
+        )
+    }
+
+
+    private fun calculatePage(page: Int): Map<String, Int?> {
+        var prevPage: Int? = page
+        var nextPage: Int? = page
+        if (page in 1..4) {
+            nextPage = nextPage?.plus(1)
+        }
+        if (page in 2..5) {
+            prevPage = prevPage?.minus(1)
+        }
+        if (page == 1) {
+            prevPage = null
+        }
+        if (page == 5) {
+            nextPage = null
+        }
+        return mapOf(PREVIOUS_PAGE_KEY to prevPage, NEXT_PAGE_KEY to nextPage)
     }
 
     override suspend fun searchHotels(name: String): ApiResponse {
