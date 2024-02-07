@@ -18,7 +18,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:00 PM",
             listOf("Pool", "Spa", "Gym"),
             listOf("Deluxe Suite", "Executive Room"),
-            listOf("Room Service", "Concierge")
+            listOf("Room Service", "Concierge"),
+            "luxury_palace"
         ),
         Hotel(
             2,
@@ -31,7 +32,8 @@ class HotelRepositoryImpl : HotelRepository {
             "11:00 AM",
             listOf("Beach Access", "Swimming Pool", "Restaurant"),
             listOf("Ocean View Room", "Standard Room"),
-            listOf("Free Wi-Fi", "Parking")
+            listOf("Free Wi-Fi", "Parking"),
+            "seaside_retreat"
         ),
         Hotel(
             3,
@@ -44,7 +46,8 @@ class HotelRepositoryImpl : HotelRepository {
             "10:00 AM",
             listOf("Hiking Trails", "Fireplace Lounge", "Bar"),
             listOf("Mountain View Cabin", "Standard Cabin"),
-            listOf("Pet-Friendly", "Wi-Fi")
+            listOf("Pet-Friendly", "Wi-Fi"),
+            "mountain_lodge"
         ),
     )
 
@@ -60,7 +63,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:30 PM",
             listOf("Rooftop Bar", "Conference Rooms", "Fitness Center"),
             listOf("City View Suite", "Business Room"),
-            listOf("Free Breakfast", "Airport Shuttle")
+            listOf("Free Breakfast", "Airport Shuttle"),
+            "urban_oasis"
         ),
         Hotel(
             5,
@@ -73,7 +77,8 @@ class HotelRepositoryImpl : HotelRepository {
             "11:00 AM",
             listOf("Antique Furnishings", "Courtyard Garden", "Tea Room"),
             listOf("Vintage Suite", "Classic Room"),
-            listOf("Complimentary Tea", "Guided Tours")
+            listOf("Complimentary Tea", "Guided Tours"),
+            "historic_inn"
         ),
         Hotel(
             6,
@@ -86,7 +91,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:00 PM",
             listOf("Private Beach", "Swim-up Bar", "Spa"),
             listOf("Luxury Villa", "Beachfront Bungalow"),
-            listOf("All-Inclusive Dining", "Water Sports")
+            listOf("All-Inclusive Dining", "Water Sports"),
+            "tropical_paradise"
         ),
     )
 
@@ -102,7 +108,8 @@ class HotelRepositoryImpl : HotelRepository {
             "11:30 AM",
             listOf("River View Terrace", "Fishing Dock", "Event Spaces"),
             listOf("Suite with River View", "Standard Room"),
-            listOf("Free Parking", "Boat Rentals")
+            listOf("Free Parking", "Boat Rentals"),
+            "riverside_manor"
         ),
         Hotel(
             8,
@@ -115,7 +122,8 @@ class HotelRepositoryImpl : HotelRepository {
             "10:30 AM",
             listOf("Solar Panels", "Nature Trails", "Organic Restaurant"),
             listOf("Green Suite", "Nature Cabin"),
-            listOf("Recycling Program", "Electric Vehicle Charging")
+            listOf("Recycling Program", "Electric Vehicle Charging"),
+            "eco_friendly_haven"
         ),
         Hotel(
             9,
@@ -128,7 +136,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:30 PM",
             listOf("Sky Lounge", "Business Center", "Indoor Pool"),
             listOf("Executive Suite", "Skyline View Room"),
-            listOf("Free Wi-Fi", "Valet Parking")
+            listOf("Free Wi-Fi", "Valet Parking"),
+            "skyline_tower_hotel"
         ),
     )
 
@@ -144,7 +153,8 @@ class HotelRepositoryImpl : HotelRepository {
             "11:00 AM",
             listOf("Meditation Gardens", "Yoga Studio", "Tea Pavilion"),
             listOf("Zen Suite", "Tranquil Room"),
-            listOf("Daily Yoga Classes", "Vegetarian Dining")
+            listOf("Daily Yoga Classes", "Vegetarian Dining"),
+            "zen_retreat"
         ),
         Hotel(
             11,
@@ -157,7 +167,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:00 PM",
             listOf("Sports Bar", "Fitness Center", "Outdoor Courts"),
             listOf("Sports Suite", "Standard Room"),
-            listOf("Game Nights", "Sports Equipment Rental")
+            listOf("Game Nights", "Sports Equipment Rental"),
+            "sports_haven"
         ),
         Hotel(
             12,
@@ -170,7 +181,8 @@ class HotelRepositoryImpl : HotelRepository {
             "10:00 AM",
             listOf("Open Fields", "Bonfire Pit", "Farm-to-Table Restaurant"),
             listOf("Country Cabin", "Rural Room"),
-            listOf("Petting Zoo", "Nature Workshops")
+            listOf("Petting Zoo", "Nature Workshops"),
+            "countryside_lodge"
         )
     )
 
@@ -186,7 +198,8 @@ class HotelRepositoryImpl : HotelRepository {
             "11:30 AM",
             listOf("Private Beach Access", "Spa Retreat", "Poolside Bar"),
             listOf("Oceanfront Suite", "Deluxe Room"),
-            listOf("Gourmet Dining", "Beach Yoga Sessions")
+            listOf("Gourmet Dining", "Beach Yoga Sessions"),
+            "gourmet_dining"
         ),
         Hotel(
             14,
@@ -199,7 +212,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:00 PM",
             listOf("Mountain View Terrace", "Heated Pool", "Fine Dining"),
             listOf("Presidential Suite", "Panoramic Room"),
-            listOf("24/7 Room Service", "Helicopter Tours")
+            listOf("24/7 Room Service", "Helicopter Tours"),
+            "golden_peaks_hotel"
         ),
         Hotel(
             15,
@@ -212,7 +226,8 @@ class HotelRepositoryImpl : HotelRepository {
             "12:00 PM",
             listOf("Skyline View Restaurant", "Spacious Ballroom", "Executive Lounge"),
             listOf("City View Suite", "Business Room"),
-            listOf("Complimentary Breakfast", "Limousine Service")
+            listOf("Complimentary Breakfast", "Limousine Service"),
+            "cityscape_grand"
         )
     )
 

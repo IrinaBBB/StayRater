@@ -14,5 +14,6 @@ data class Hotel(
     val checkOutTime: String,
     val amenities: List<String>,
     val roomTypes: List<String>,
-    val services: List<String>
+    val services: List<String>,
+    val image: String
 )
