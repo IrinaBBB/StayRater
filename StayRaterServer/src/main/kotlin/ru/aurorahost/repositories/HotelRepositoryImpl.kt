@@ -212,7 +212,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Private Beach Access", "Spa Retreat", "Poolside Bar"),
             listOf("Oceanfront Suite", "Deluxe Room"),
             listOf("Gourmet Dining", "Beach Yoga Sessions"),
-            "/images/gourmet_dining.jpg"
+            "/images/tranquility_bay_resort.jpg"
         ),
         Hotel(
             14,
@@ -274,7 +274,19 @@ class HotelRepositoryImpl : HotelRepository {
         return mapOf(PREVIOUS_PAGE_KEY to prevPage, NEXT_PAGE_KEY to nextPage)
     }
 
-    override suspend fun searchHotels(name: String): ApiResponse {
-        TODO("Not yet implemented")
+    override suspend fun searchHotels(query: String): List<Hotel> {
+        val found = mutableListOf<Hotel>()
+        return if (query.isNotEmpty()) {
+            hotels.forEach { (_, hotels) ->
+                hotels.forEach { hotel ->
+                    if (hotel.name.lowercase().contains(query.lowercase())) {
+                        found.add(hotel)
+                    }
+                }
+            }
+            found
+        } else {
+            emptyList()
+        }
     }
 }

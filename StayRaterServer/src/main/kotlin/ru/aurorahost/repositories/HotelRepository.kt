@@ -14,5 +14,5 @@ interface HotelRepository {
     val page5: List<Hotel>
 
     suspend fun getAllHotels(page: Int = 1): ApiResponse
-    suspend fun searchHotels(name: String): ApiResponse
+    suspend fun searchHotels(query: String): List<Hotel>
 }
