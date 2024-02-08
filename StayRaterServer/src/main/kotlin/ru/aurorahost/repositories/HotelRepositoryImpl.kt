@@ -32,7 +32,7 @@ class HotelRepositoryImpl : HotelRepository {
             listOf("Pool", "Spa", "Gym"),
             listOf("Deluxe Suite", "Executive Room"),
             listOf("Room Service", "Concierge"),
-            "/images/luxury_palace.jpg"
+            "/images/palace_hotel.jpg"
         ),
         Hotel(
             2,
