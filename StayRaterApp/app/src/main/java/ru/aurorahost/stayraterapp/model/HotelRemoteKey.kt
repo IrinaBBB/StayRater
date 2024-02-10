@@ -8,6 +8,6 @@ import ru.aurorahost.stayraterapp.util.Constants.HOTEL_REMOTE_KEY_DATABASE_TABLE
 data class HotelRemoteKey(
     @PrimaryKey(autoGenerate = false)
     val id: Int,
-    val prevKey: Int?,
-    val nextKey: Int?
+    val prevPage: Int?,
+    val nextPage: Int?
 )
