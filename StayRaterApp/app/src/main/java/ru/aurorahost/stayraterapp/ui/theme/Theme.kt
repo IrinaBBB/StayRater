@@ -57,7 +57,7 @@ fun StayRaterAppTheme(
     if (!view.isInEditMode) {
         SideEffect {
             val window = (view.context as Activity).window
-            window.statusBarColor = Dark.toArgb()
+            window.statusBarColor = if (darkTheme) Main.toArgb() else Dark.toArgb()
             WindowCompat.getInsetsController(window, view).isAppearanceLightStatusBars = darkTheme
         }
     }
