@@ -52,7 +52,7 @@ android {
     }
 }
 
-val accompanistVersion = "0.18.0"
+val accompanistVersion = "0.21.2-beta"
 
 dependencies {
 
@@ -89,7 +89,7 @@ dependencies {
     implementation("com.jakewharton.retrofit:retrofit2-kotlinx-serialization-converter:0.8.0")
 
     // Paging 3.0
-    implementation("androidx.paging:paging-compose:3.2.1")
+    implementation("androidx.paging:paging-compose:1.0.0-alpha14")
 
     // KotlinX Serialization
     implementation("org.jetbrains.kotlinx:kotlinx-serialization-json:1.5.1")
