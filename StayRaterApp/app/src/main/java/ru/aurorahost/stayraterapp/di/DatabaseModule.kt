@@ -19,10 +19,12 @@ object DatabaseModule {
     @Singleton
     fun provideDatabase(
         @ApplicationContext context: Context
-    ) = Room.databaseBuilder(
-        context,
-        StayRaterDb::class.java,
-        STAY_RATER_DB
-    ).build()
+    ): StayRaterDb {
+        return Room.databaseBuilder(
+            context,
+            StayRaterDb::class.java,
+            STAY_RATER_DB
+        ).build()
+    }
 
 }

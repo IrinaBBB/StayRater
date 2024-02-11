@@ -10,6 +10,7 @@ import ru.aurorahost.stayraterapp.data.repository.DataStoreOperationsImpl
 import ru.aurorahost.stayraterapp.data.repository.Repository
 import ru.aurorahost.stayraterapp.domain.repository.DataStoreOperations
 import ru.aurorahost.stayraterapp.domain.use_cases.UseCases
+import ru.aurorahost.stayraterapp.domain.use_cases.get_all_hotels.GetAllHotelsUseCase
 import ru.aurorahost.stayraterapp.domain.use_cases.read_onboarding.ReadOnBoardingUseCase
 import ru.aurorahost.stayraterapp.domain.use_cases.save_onboarding.SaveOnBoardingUseCase
 import javax.inject.Singleton
@@ -33,7 +34,8 @@ object RepositoryModule {
     fun provideUseCases(repository: Repository): UseCases {
         return UseCases(
             saveOnBoardingUseCase = SaveOnBoardingUseCase(repository),
-            readOnBoardingUseCase = ReadOnBoardingUseCase(repository)
+            readOnBoardingUseCase = ReadOnBoardingUseCase(repository),
+            getAllHotelsUseCase = GetAllHotelsUseCase(repository)
         )
     }
 
