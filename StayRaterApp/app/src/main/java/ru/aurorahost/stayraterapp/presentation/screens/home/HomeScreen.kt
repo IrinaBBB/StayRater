@@ -3,18 +3,27 @@ package ru.aurorahost.stayraterapp.presentation.screens.home
 import android.annotation.SuppressLint
 import androidx.compose.material.Scaffold
 import androidx.compose.runtime.Composable
-import androidx.compose.ui.graphics.Color
-import ru.aurorahost.stayraterapp.presentation.components.RatingBar
-import ru.aurorahost.stayraterapp.ui.theme.Main
+import androidx.hilt.navigation.compose.hiltViewModel
+import androidx.navigation.NavHostController
+import androidx.paging.compose.collectAsLazyPagingItems
+import ru.aurorahost.stayraterapp.presentation.common.ListContent
 
 @SuppressLint("UnusedMaterialScaffoldPaddingParameter")
 @Composable
-fun HomeScreen() {
+fun HomeScreen(
+    navController: NavHostController,
+    homeViewModel: HomeViewModel = hiltViewModel()
+) {
+    val allHotels = homeViewModel.getAllHotels.collectAsLazyPagingItems()
     Scaffold(
         topBar = {
             HomeTopBar(onSearchClicked = {})
+        },
+        content = {
+            ListContent(
+                hotels = allHotels,
+                navController = navController
+            )
         }
-    ) {
-        RatingBar(stars=6, rating = 4.5)
-    }
+    )
 }
