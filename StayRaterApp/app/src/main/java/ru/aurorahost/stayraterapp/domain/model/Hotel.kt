@@ -1,9 +1,13 @@
+@file:Suppress("PLUGIN_IS_NOT_ENABLED")
+
 package ru.aurorahost.stayraterapp.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey
+import kotlinx.serialization.Serializable
 import ru.aurorahost.stayraterapp.util.Constants.HOTEL_DATABASE_TABLE
 
+@Serializable
 @Entity(tableName = HOTEL_DATABASE_TABLE)
 data class Hotel(
 
