@@ -4,12 +4,12 @@ import android.content.res.Configuration.UI_MODE_NIGHT_YES
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.clickable
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.material.ContentAlpha
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Surface
 import androidx.compose.material.Text
-import androidx.compose.material3.Shapes
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -22,27 +22,49 @@ import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.rememberNavController
+import androidx.paging.LoadState
 import androidx.paging.compose.LazyPagingItems
+import androidx.paging.compose.items
 import coil.annotation.ExperimentalCoilApi
 import coil.compose.rememberImagePainter
-import ru.aurorahost.stayraterapp.domain.model.Hotel
-import ru.aurorahost.stayraterapp.util.Constants.BASE_URL
 import ru.aurorahost.stayraterapp.R
+import ru.aurorahost.stayraterapp.domain.model.Hotel
 import ru.aurorahost.stayraterapp.navigation.Screen
 import ru.aurorahost.stayraterapp.presentation.components.RatingBar
+import ru.aurorahost.stayraterapp.presentation.components.ShimmerEffect
 import ru.aurorahost.stayraterapp.ui.theme.HOTEL_ITEM_HEIGHT
 import ru.aurorahost.stayraterapp.ui.theme.LARGE_PADDING
 import ru.aurorahost.stayraterapp.ui.theme.MEDIUM_PADDING
 import ru.aurorahost.stayraterapp.ui.theme.SMALL_PADDING
+import ru.aurorahost.stayraterapp.ui.theme.StarColor
 import ru.aurorahost.stayraterapp.ui.theme.topAppBarContentColor
+import ru.aurorahost.stayraterapp.util.Constants.BASE_URL
 
-
+@ExperimentalCoilApi
 @Composable
 fun ListContent(
     hotels: LazyPagingItems<Hotel>,
     navController: NavHostController
 ) {
+    val result = handlePagingResult(hotels = hotels)
 
+    if (result) {
+        LazyColumn(
+            contentPadding = PaddingValues(all = SMALL_PADDING),
+            verticalArrangement = Arrangement.spacedBy(SMALL_PADDING),
+        ) {
+            items(
+                items = hotels,
+                key = { hotel ->
+                    hotel.id
+                }
+            ) { hotel ->
+                hotel?.let {
+                    HotelItem(hotel = it, navController = navController)
+                }
+            }
+        }
+    }
 }
 
 @ExperimentalCoilApi
@@ -108,7 +130,8 @@ fun HotelItem(
                 ) {
                     RatingBar(
                         modifier = Modifier.padding(end = SMALL_PADDING),
-                        rating = hotel.rating
+                        rating = hotel.rating,
+                        starsColor = StarColor
                     )
                     Text(
                         text = "(${hotel.rating})",
@@ -120,6 +143,37 @@ fun HotelItem(
         }
     }
 }
+
+@Composable
+fun handlePagingResult(
+    hotels: LazyPagingItems<Hotel>
+): Boolean {
+    hotels.apply {
+        val error = when {
+            loadState.refresh is LoadState.Error -> loadState.refresh as LoadState.Error
+            loadState.prepend is LoadState.Error -> loadState.prepend as LoadState.Error
+            loadState.append is LoadState.Error -> loadState.append as LoadState.Error
+            else -> null
+        }
+
+        return when {
+            loadState.refresh is LoadState.Loading -> {
+                ShimmerEffect()
+                false
+            }
+            error != null -> {
+                EmptyScreen(error = error, hotels = hotels)
+                false
+            }
+            hotels.itemCount < 1 -> {
+                EmptyScreen()
+                false
+            }
+            else -> true
+        }
+    }
+}
+
 
 @ExperimentalCoilApi
 @Composable

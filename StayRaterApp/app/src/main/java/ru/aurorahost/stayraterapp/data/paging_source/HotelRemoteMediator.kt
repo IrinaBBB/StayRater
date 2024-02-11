@@ -20,6 +20,19 @@ class HotelRemoteMediator @Inject constructor(
     private val hotelDao = stayRaterDb.hotelDao()
     private val hotelRemoteKeysDao = stayRaterDb.hotelRemoteKeysDao()
 
+    override suspend fun initialize(): InitializeAction {
+        val currentTime = System.currentTimeMillis()
+        val lastUpdated = hotelRemoteKeysDao.getRemoteKeys(hotelId = 1)?.lastUpdated ?: 0L
+        val cacheTimeout = 1440
+
+        val diffInMinutes = (currentTime - lastUpdated) / 1000 / 60
+        return if (diffInMinutes.toInt() <= cacheTimeout) {
+            InitializeAction.SKIP_INITIAL_REFRESH
+        } else {
+            InitializeAction.LAUNCH_INITIAL_REFRESH
+        }
+    }
+
     override suspend fun load(loadType: LoadType, state: PagingState<Int, Hotel>): MediatorResult {
         return try {
             val page = when (loadType) {
@@ -60,7 +73,8 @@ class HotelRemoteMediator @Inject constructor(
                         HotelRemoteKeys(
                             id = hotel.id,
                             prevPage = prevPage,
-                            nextPage = nextPage
+                            nextPage = nextPage,
+                            lastUpdated = response.lastUpdated
                         )
                     }
                     hotelRemoteKeysDao.addAllRemoteKeys(hotelRemoteKeys = keys)
