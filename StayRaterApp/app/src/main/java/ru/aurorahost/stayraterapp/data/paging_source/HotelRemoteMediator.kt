@@ -1,4 +1,4 @@
-package ru.aurorahost.stayraterapp.data.local.paging_source
+package ru.aurorahost.stayraterapp.data.paging_source
 import androidx.paging.ExperimentalPagingApi
 import androidx.paging.LoadType
 import androidx.paging.PagingState

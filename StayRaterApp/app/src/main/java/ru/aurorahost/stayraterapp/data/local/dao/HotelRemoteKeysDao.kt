@@ -9,7 +9,7 @@ import ru.aurorahost.stayraterapp.domain.model.HotelRemoteKeys
 @Dao
 interface HotelRemoteKeysDao {
 
-    @Query("SELECT * FROM hotel_remote_keys_table WHERE id = :id")
+    @Query("SELECT * FROM hotel_remote_keys_table WHERE id = :hotelId")
     suspend fun getRemoteKeys(hotelId: Int): HotelRemoteKeys?
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
