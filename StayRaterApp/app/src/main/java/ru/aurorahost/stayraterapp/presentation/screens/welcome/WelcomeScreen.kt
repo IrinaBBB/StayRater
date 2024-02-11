@@ -19,13 +19,14 @@ import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.font.FontWeight
 import androidx.compose.ui.text.style.TextAlign
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.hilt.navigation.compose.hiltViewModel
 import androidx.navigation.NavHostController
 import com.google.accompanist.pager.ExperimentalPagerApi
 import com.google.accompanist.pager.HorizontalPager
 import com.google.accompanist.pager.HorizontalPagerIndicator
 import com.google.accompanist.pager.PagerState
 import com.google.accompanist.pager.rememberPagerState
-import ru.aurorahost.stayraterapp.model.OnBoardingPage
+import ru.aurorahost.stayraterapp.domain.model.OnBoardingPage
 import ru.aurorahost.stayraterapp.ui.theme.EXTRA_LARGE_PADDING
 import ru.aurorahost.stayraterapp.ui.theme.PAGING_INDICATOR_SPACING
 import ru.aurorahost.stayraterapp.ui.theme.PAGING_INDICATOR_WIDTH
@@ -38,13 +39,17 @@ import ru.aurorahost.stayraterapp.ui.theme.titleColor
 import ru.aurorahost.stayraterapp.ui.theme.welcomeScreenBackgroundColor
 import ru.aurorahost.stayraterapp.util.Constants.ON_BOARDING_PAGE_COUNT
 import ru.aurorahost.stayraterapp.R
+import ru.aurorahost.stayraterapp.navigation.Screen
 import ru.aurorahost.stayraterapp.ui.theme.buttonTextColor
 
 
 @ExperimentalAnimationApi
 @ExperimentalPagerApi
 @Composable
-fun WelcomeScreen(navController: NavHostController) {
+fun WelcomeScreen(
+    navController: NavHostController,
+    welcomeViewModel: WelcomeViewModel = hiltViewModel()
+) {
     val pages = listOf(
         OnBoardingPage.First,
         OnBoardingPage.Second,
@@ -80,7 +85,9 @@ fun WelcomeScreen(navController: NavHostController) {
             modifier = Modifier.weight(1f),
             pagerState = pagerState
         ) {
-
+            navController.popBackStack()
+            navController.navigate(Screen.Home.route)
+            welcomeViewModel.saveOnBoardingState(completed = true)
         }
     }
 }

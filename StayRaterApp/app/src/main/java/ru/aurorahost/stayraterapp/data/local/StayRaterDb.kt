@@ -4,8 +4,8 @@ import androidx.room.Database
 import androidx.room.RoomDatabase
 import androidx.room.TypeConverters
 import ru.aurorahost.stayraterapp.data.local.dao.HotelDao
-import ru.aurorahost.stayraterapp.model.Hotel
-import ru.aurorahost.stayraterapp.model.HotelRemoteKey
+import ru.aurorahost.stayraterapp.domain.model.Hotel
+import ru.aurorahost.stayraterapp.domain.model.HotelRemoteKey
 
 
 @Database(entities = [Hotel::class, HotelRemoteKey::class], version = 1)

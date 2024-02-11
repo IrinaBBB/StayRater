@@ -1,4 +1,4 @@
-package ru.aurorahost.stayraterapp.model
+package ru.aurorahost.stayraterapp.domain.model
 
 import androidx.annotation.DrawableRes
 import ru.aurorahost.stayraterapp.R

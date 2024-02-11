@@ -5,7 +5,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.aurorahost.stayraterapp.model.Hotel
+import ru.aurorahost.stayraterapp.domain.model.Hotel
 
 @Dao
 interface HotelDao {

@@ -1,4 +1,4 @@
-package ru.aurorahost.stayraterapp.model
+package ru.aurorahost.stayraterapp.domain.model
 
 import androidx.room.Entity
 import androidx.room.PrimaryKey

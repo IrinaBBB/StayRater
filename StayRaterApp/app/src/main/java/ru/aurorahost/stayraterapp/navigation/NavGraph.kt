@@ -1,5 +1,6 @@
 package ru.aurorahost.stayraterapp.navigation
 
+import androidx.compose.animation.ExperimentalAnimationApi
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.NavType
@@ -11,6 +12,7 @@ import ru.aurorahost.stayraterapp.presentation.screens.splash.SplashScreen
 import ru.aurorahost.stayraterapp.presentation.screens.welcome.WelcomeScreen
 import ru.aurorahost.stayraterapp.util.Constants.DETAILS_ARGUMENT_KEY
 
+@OptIn(ExperimentalAnimationApi::class)
 @ExperimentalPagerApi
 @Composable
 fun SetupNavGraph(navController: NavHostController) {
@@ -19,11 +21,10 @@ fun SetupNavGraph(navController: NavHostController) {
         startDestination = Screen.Splash.route
     ) {
         composable(route = Screen.Splash.route) {
-            //SplashScreen(navController = navController)
-            WelcomeScreen(navController = navController)
+            SplashScreen(navController = navController)
         }
         composable(route = Screen.Welcome.route) {
-
+            WelcomeScreen(navController = navController)
         }
         composable(route = Screen.Home.route) {
 

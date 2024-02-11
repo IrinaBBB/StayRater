@@ -4,7 +4,7 @@ import androidx.room.Dao
 import androidx.room.Insert
 import androidx.room.OnConflictStrategy
 import androidx.room.Query
-import ru.aurorahost.stayraterapp.model.HotelRemoteKey
+import ru.aurorahost.stayraterapp.domain.model.HotelRemoteKey
 
 @Dao
 interface HotelRemoteKeyDao {
