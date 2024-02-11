@@ -4,15 +4,15 @@ import retrofit2.http.GET
 import retrofit2.http.Query
 import ru.aurorahost.stayraterapp.domain.model.ApiResponse
 
-interface BorutoApi {
+interface StayRaterApi {
 
     @GET("/hotels")
-    suspend fun getAllHeroes(
+    suspend fun getAllHotels(
         @Query("page") page: Int = 1
     ): ApiResponse
 
     @GET("/search")
-    suspend fun searchHeroes(
+    suspend fun searchHotels(
         @Query("name") name: String
     ): ApiResponse
 
