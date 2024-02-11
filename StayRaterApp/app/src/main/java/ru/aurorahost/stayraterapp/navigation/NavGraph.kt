@@ -8,6 +8,7 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.navArgument
 import com.google.accompanist.pager.ExperimentalPagerApi
+import ru.aurorahost.stayraterapp.presentation.screens.home.HomeScreen
 import ru.aurorahost.stayraterapp.presentation.screens.splash.SplashScreen
 import ru.aurorahost.stayraterapp.presentation.screens.welcome.WelcomeScreen
 import ru.aurorahost.stayraterapp.util.Constants.DETAILS_ARGUMENT_KEY
@@ -27,7 +28,7 @@ fun SetupNavGraph(navController: NavHostController) {
             WelcomeScreen(navController = navController)
         }
         composable(route = Screen.Home.route) {
-
+            HomeScreen()
         }
         composable(
             route = Screen.Details.route,

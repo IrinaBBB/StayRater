@@ -52,3 +52,11 @@ val Colors.buttonBackgroundColor
 val Colors.buttonTextColor
     @Composable
     get() = if (isLightTheme) Light else Dark
+
+val Colors.topAppBarContentColor: Color
+    @Composable
+    get() = if (isLightTheme) Light else Dark
+
+val Colors.topAppBarBackgroundColor: Color
+    @Composable
+    get() = if (isLightTheme) Dark else Main
