@@ -74,6 +74,8 @@ dependencies {
 
     kapt("org.jetbrains.kotlinx:kotlinx-metadata-jvm:0.4.2")
 
+    implementation("androidx.compose.material:material-icons-extended:1.6.1")
+
     // Compose Navigation
     implementation("androidx.navigation:navigation-compose:2.7.6")
 
